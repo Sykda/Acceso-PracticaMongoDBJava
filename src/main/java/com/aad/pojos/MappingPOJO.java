@@ -35,7 +35,7 @@ public class MappingPOJO {
             MongoCollection<Grade> grades = db.getCollection("grades", Grade.class);
 
             // create a new grade.
-            Grade newGrade = new Grade().setStudentId(0)
+            Grade newGrade = new Grade().setStudentId(10003d)
                     .setClassId(10d)
                     .setScores(singletonList(new Score().setType("homework").setScore(50d)));
             grades.insertOne(newGrade);
