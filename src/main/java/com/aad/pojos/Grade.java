@@ -2,48 +2,47 @@ package com.aad.pojos;
 
 import java.util.List;
 
-import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
 
 public class Grade {
 
-    private ObjectId id;
-    
-    private Double studentId;
-    
-    private Double classId;
+	private ObjectId id;
 
-    private List<Score> scores;
+	private Double studentId;
 
-    public ObjectId getId() {
-        return id;
-    }
+	private Double classId;
 
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
+	private List<Score> scores;
 
-    public Double getStudentId() {
-        return studentId;
-    }
+	public ObjectId getId() {
+		return id;
+	}
 
-    public void setStudentId(Double studentId) {
-        this.studentId = studentId;
-    }
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
 
-    public Double getClassId() {
-        return classId;
-    }
+	public Double getStudentId() {
+		return studentId;
+	}
 
-    public void setClassId(Double classId) {
-        this.classId = classId;
-    }
+	public void setStudentId(Double studentId) {
+		this.studentId = studentId;
+	}
 
-    public List<Score> getScores() {
-        return scores;
-    }
+	public Double getClassId() {
+		return classId;
+	}
 
-    public void setScores(List<Score> scores) {
-        this.scores = scores;
-    }
+	public void setClassId(Double classId) {
+		this.classId = classId;
+	}
+
+	public List<Score> getScores() {
+		return scores;
+	}
+
+	public void setScores(List<Score> scores) {
+		this.scores = scores;
+	}
 }

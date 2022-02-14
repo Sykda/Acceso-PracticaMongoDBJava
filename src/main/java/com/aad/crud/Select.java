@@ -13,14 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.bson.Document;
+
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-
-import org.bson.Document;
 
 public class Select {
 
@@ -63,11 +63,8 @@ public class Select {
 
 		// find a list of documents with sort, skip, limit and projection
 		List<Document> docs = users.find(and(eq("student_id", 10001), lte("class_id", 5)))
-				.projection(fields(excludeId(), include("class_id", "student_id")))
-				.sort(descending("class_id"))
-				.skip(2)
-				.limit(2)
-				.into(new ArrayList<>());
+				.projection(fields(excludeId(), include("class_id", "student_id"))).sort(descending("class_id")).skip(2)
+				.limit(2).into(new ArrayList<>());
 		System.out.println("Student sorted, skipped, limited and projected: ");
 		for (Document student : docs) {
 			System.out.println(student.toJson());
