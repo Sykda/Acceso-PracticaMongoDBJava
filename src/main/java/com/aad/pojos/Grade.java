@@ -8,11 +8,9 @@ import org.bson.types.ObjectId;
 public class Grade {
 
     private ObjectId id;
-
-    @BsonProperty
+    
     private Double studentId;
-
-    @BsonProperty
+    
     private Double classId;
 
     private List<Score> scores;

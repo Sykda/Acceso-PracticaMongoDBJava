@@ -8,13 +8,13 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.FindOneAndReplaceOptions;
 import com.mongodb.client.model.ReturnDocument;
-import com.mongodb.quickstart.models.Grade;
-import com.mongodb.quickstart.models.Score;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import java.util.ArrayList;
 import java.util.List;
+import com.aad.pojos.*;
+import com.aad.crud.*;
 import static com.mongodb.client.model.Filters.eq;
 import static java.util.Collections.singletonList;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
@@ -23,7 +23,7 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 public class MappingPOJO {
     public static void main(String[] args) {
 
-        ConnectionString connectionString = new ConnectionString(System.getProperty("mongodb.uri"));
+    	ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017");
         CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
         CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
         MongoClientSettings clientSettings = MongoClientSettings.builder()
@@ -35,18 +35,25 @@ public class MappingPOJO {
             MongoCollection<Grade> grades = db.getCollection("grades", Grade.class);
 
             // create a new grade.
-            Grade newGrade = new Grade().setStudentId(10003d)
-                    .setClassId(10d)
-                    .setScores(singletonList(new Score().setType("homework").setScore(50d)));
+            Grade newGrade = new Grade();
+            newGrade.setStudentId(10003d);
+            newGrade.setClassId(10d);
+            Score score =new Score();
+            score.setType("homework");
+            score.setScore(50d);
+            newGrade.setScores(singletonList(score));
             grades.insertOne(newGrade);
 
             // find this grade.
-            Grade grade = grades.find(eq("student_id", 10003d)).first();
+            Grade grade = grades.find(eq("studentId", 10003d)).first();
             System.out.println("Grade found:\t" + grade);
 
             // update this grade: adding an exam grade
             List<Score> newScores = new ArrayList<>(grade.getScores());
-            newScores.add(new Score().setType("exam").setScore(42d));
+            Score score2= new Score();
+            score2.setType("exam");
+            score2.setScore(42d);
+            newScores.add(score2);
             grade.setScores(newScores);
             Document filterByGradeId = new Document("_id", grade.getId());
             FindOneAndReplaceOptions returnDocAfterReplace = new FindOneAndReplaceOptions()
