@@ -16,8 +16,8 @@ public class Create {
 	public static void main(String[] args) {
 		// Conexion
 		MongoClient client = MongoClients.create("mongodb://localhost:27017");
-		MongoDatabase database = client.getDatabase("users");
-		MongoCollection<Document> users = database.getCollection("users");
+		MongoDatabase database = client.getDatabase("sample_training");
+		MongoCollection<Document> users = database.getCollection("grades");
 
 		Random rand = new Random();
 		Document student = new Document("_id", new ObjectId());

@@ -2,14 +2,17 @@ package com.aad.pojos;
 
 import java.util.List;
 
+import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
 
 public class Grade {
 
 	private ObjectId id;
 
+	@BsonProperty(value = "student_id")
 	private Double studentId;
 
+	@BsonProperty(value = "class_id")
 	private Double classId;
 
 	private List<Score> scores;

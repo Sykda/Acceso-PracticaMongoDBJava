@@ -44,7 +44,7 @@ public class MappingPOJO {
 			grades.insertOne(newGrade);
 
 			// find this grade.
-			Grade grade = grades.find(eq("studentId", 10003d)).first();
+			Grade grade = grades.find(eq("student_id", 10003d)).first();
 			System.out.println("Grade found:\t" + grade);
 
 			// update this grade: adding an exam grade
@@ -54,7 +54,7 @@ public class MappingPOJO {
 			score2.setScore(42d);
 			newScores.add(score2);
 			grade.setScores(newScores);
-			Document filterByGradeId = new Document("_id", grade.getId());
+			Document filterByGradeId = new Document("student_id", grade.getId());
 			FindOneAndReplaceOptions returnDocAfterReplace = new FindOneAndReplaceOptions()
 					.returnDocument(ReturnDocument.AFTER);
 			Grade updatedGrade = grades.findOneAndReplace(filterByGradeId, grade, returnDocAfterReplace);

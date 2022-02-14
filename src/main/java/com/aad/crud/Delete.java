@@ -18,8 +18,8 @@ public class Delete {
 
 		// Conexion
 		MongoClient client = MongoClients.create("mongodb://localhost:27017");
-		MongoDatabase database = client.getDatabase("users");
-		MongoCollection<Document> users = database.getCollection("users");
+		MongoDatabase database = client.getDatabase("sample_training");
+		MongoCollection<Document> users = database.getCollection("grades");
 
 		// delete one document
 		Bson filter = eq("student_id", 10000);
